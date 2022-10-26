@@ -1,4 +1,5 @@
 let selectedRow = null;
+let identifiant = 1;
 
 //Show Alerts
 function showAlert(message, className){
@@ -19,22 +20,24 @@ function clearFields(){
     document.querySelector("#nom").value = "";
     document.querySelector("#prenom").value = "";
     document.querySelector("#note").value = "";
+    identifiant++;
+
 }
 
 // Add 
 document.querySelector("#formulaire").addEventListener("submit", (e) =>{
     e.preventDefault();
     //get form values
-    const id = document.querySelector("#id").value;
     const nom = document.querySelector("#nom").value;
     const prenom = document.querySelector("#prenom").value;
     const note = document.querySelector("#note").value;
 
     const list = document.querySelector("#list");
+    console.log();
     const row = document.createElement("tr");
 
     row.innerHTML = `
-        <td></td>
+        <td>${identifiant}</td>
         <td>${nom}</td>
         <td>${prenom}</td>
         <td>${note}</td>
