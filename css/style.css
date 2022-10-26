@@ -1,4 +1,8 @@
-.tableau {
+body {
+    background: lightgray;
+}
+
+.tableMain {
     /* police du texte */
     font-family: Arial;
     border-collapse: collapse;
@@ -8,27 +12,29 @@
     margin-left: auto;
     /*centrer le tableau marge auto*/
     margin-right: auto;
+    /* couleur background tableau */
+    background: white;
 }
 
 /*bordures des lignes*/
-.tableau td,
-.tableau th {
+.tableMain td,
+.tableMain th {
     border: 1px solid #ddd;
     padding: 8px;
 }
 
 /*changer la couleur des lignes*/
-.tableau tr:nth-child(even) {
+.tableMain tr:nth-child(even) {
     background-color: #f2f2f2;
 }
 
 /*changer la couleur de la ligne quant on met le curseur*/
-.tableau tr:hover {
+.tableMain tr:hover {
     background-color: #ddd;
 }
 
 /*En tete du tableau*/
-.tableau th {
+.tableMain th {
     /*marge interieure haut*/
     padding-top: 12px; 
     /*marge interieure bat*/
