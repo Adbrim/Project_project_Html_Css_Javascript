@@ -1,18 +1,5 @@
-let selectedRow = null;
-let identifiant = 1;
-
-//Show Alerts
-function showAlert(message, className){
-    const div = document.createElement("div");
-    div.className = 'alert laert-${className}'
-
-    div.appendChild(document.createTextNode(message));
-    const container = document.querySelector(".container");
-    const main = document.querySelector(".tableMain");   
-    container.insertBefore(div,main);
-
-    setTimeout(() => document.querySelector(".alert").remove(), 3000);
-}
+let identifiant = 2;
+selectedRow = null
 
 // Clear All Fields
 function clearFields(){
@@ -33,23 +20,22 @@ document.querySelector("#formulaire").addEventListener("submit", (e) =>{
     const note = document.querySelector("#note").value;
 
     const list = document.querySelector("#list");
-    console.log();
+    console.log(list);
     const row = document.createElement("tr");
-
+    console.log(row);
     row.innerHTML = `
         <td>${identifiant}</td>
         <td>${nom}</td>
         <td>${prenom}</td>
         <td>${note}</td>
         <td>
-        <button type="button" class="edit">Modifier</button>
-        <button type="button" class="delete">Supprimer</button>
+        <button type="button" class="edits" onclick="UpStud(this);">Modifier</button>
+        <button type="button" class="delete" >Supprimer</button>
         </td>
     `;
 
     list.appendChild(row);
     selectedRow = null;
-    showAlert("Student Data Deleted", "danger");
     clearFields()
 })
 
@@ -58,6 +44,95 @@ document.querySelector("#list").addEventListener("click", (e) => {
     target = e.target;
     if(target.classList.contains("delete")){
         target.parentElement.parentElement.remove();
-        showAlert("Student Data Deleted", "danger");
     }
 })
+
+
+
+// document.querySelector("#list").addEventListener("click", (e) => {
+//     target = e.target;
+//     if(target.classList.contains("edit")){
+//         let row = target.parentElement.parentElement;
+//         row = row.parentNode.parentNode;
+//         console.log(row);
+
+//         var tr = document.createElement('tr');
+        
+//         var td1 = tr.appendChild(document.createElement('td'));
+//         var td2 = tr.appendChild(document.createElement('td'));
+//         var td3 = tr.appendChild(document.createElement('td'));
+//         var td4 = tr.appendChild(document.createElement('td'));
+//         var td5 = tr.appendChild(document.createElement('td'));
+        
+        
+//         td1.innerHTML='<td><input type="number" id="id" name="id" readonly></td>';
+//         td2.innerHTML='<td><input type="text" id="nom" name="nom"></td>';
+//         td3.innerHTML='<td><input type="text" id="prenom" name="prenom"></td>';
+//         td4.innerHTML='<td><input type="number" id="note" name="note"></td>';
+//         td5.innerHTML='<td><button type="submit" class="add-btn" value="submit">Annuler</button></td>';
+
+//         document.getElementById("#list").replaceChild(tr, row)
+
+//         // row.parentNode.replaceChild(newRow, row);
+//         // document.querySelector("#id").value = selectedRow.children[0].textContent;
+//         // document.querySelector("#nom").value = selectedRow.children[1].textContent;
+//         // document.querySelector("#prenom").value = selectedRow.children[2].textContent;
+//         // document.querySelector("#note").value = selectedRow.children[3].textContent;
+//     }
+// })
+
+function UpStud(stud){
+    var id=document.form.id.value; 
+    var nom=document.form.nom.value; 
+    var prenom=document.form.prenom.value; 
+    var note=document.form.note.value; 
+
+    var s = stud.parentNode.parentNode;
+    var tr = document.createElement('tr');
+    
+    var tr = document.createElement('tr');
+        
+    var td1 = tr.appendChild(document.createElement('td'));
+    var td2 = tr.appendChild(document.createElement('td'));
+    var td3 = tr.appendChild(document.createElement('td'));
+    var td4 = tr.appendChild(document.createElement('td'));
+    var td5 = tr.appendChild(document.createElement('td'));
+    
+    
+    td1.innerHTML='<td><input type="number" id="ids" name="ids" readonly></td>';
+    td2.innerHTML='<td><input type="text" id="noms" name="noms"></td>';
+    td3.innerHTML='<td><input type="text" id="prenoms" name="prenoms"></td>';
+    td4.innerHTML='<td><input type="number" id="notes" name="notes"></td>';
+    td5.innerHTML='<td><button type="submit" class="add-btn" value="submit" onclick="validStud(this);">valider</button></td>';
+
+    document.getElementById("list").replaceChild(tr, s);
+
+    document.querySelector("#ids").value = s.children[0].textContent;
+    document.querySelector("#noms").value = s.children[1].textContent;
+    document.querySelector("#prenoms").value = s.children[2].textContent;
+    document.querySelector("#notes").value = s.children[3].textContent;
+
+}
+
+function validStud(stud){
+    const id = document.querySelector("#ids").value;
+    const nom = document.querySelector("#noms").value;
+    const prenom = document.querySelector("#prenoms").value;
+    const note = document.querySelector("#notes").value;
+
+    var s = stud.parentNode.parentNode;
+    var tr = document.createElement('tr');
+    
+    tr.innerHTML = `
+        <td>${id}</td>
+        <td>${nom}</td>
+        <td>${prenom}</td>
+        <td>${note}</td>
+        <td>
+        <button type="button" class="edits" onclick="UpStud(this);">Modifier</button>
+        <button type="button" class="delete" >Supprimer</button>
+        </td>
+    `;
+
+    document.getElementById("list").replaceChild(tr, s);
+}
